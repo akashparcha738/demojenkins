@@ -1,0 +1,74 @@
+pipeline {
+    agent any
+    environment {
+        firstname="Akash"
+    }
+    parameters {
+        string(name: 'person', defaultValue: 'Akash Parcha', description: 'Who are you?')
+        booleanParam(name: 'isMale', defaultValue: 'true', description: '')
+        choice(name: 'city', choices: ['mumbai','jaipur','delhi'], description: '')
+    }
+
+    stages {
+        stage('Test') {
+            steps {
+               sh '''
+               'date'
+               'pwd'
+                  '''
+            }
+        }
+        stage('environment variable') {
+            environment {
+                lastname="Parcha"
+            }
+            steps {
+                sh 'echo "${BUILD_ID}"'
+            sh 'echo "${firstname}"'
+                sh 'echo "${lastname}"'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                echo 'build'
+                sh 'echo "${isMale}"'
+                sh 'echo "${city}"'
+            }
+        }
+        stage('Deploy on test') {
+            steps {
+                echo 'Deploy on test'
+                 sh 'echo "${firstname}"'
+                 sh 'echo "${person}"'
+            }
+        }
+        stage('Continue ?') {
+            input {
+                message "Should we continue ?"
+                ok "Yes we Should"
+            }
+                steps {
+                    echo 'patch has been deplyed to prod'
+                }
+        }
+        stage('Deploy on prod') {
+            steps {
+                echo 'Deploy on prod'
+            }
+        }
+    }
+post {
+            always { 
+            echo 'I will always say Hello again!'
+        }
+        failure {
+            echo 'job has been failed'
+        }
+         success {
+            echo 'job has been succeded'
+        }
+        }
+    
+}
+
