@@ -1,20 +1,20 @@
 pipeline {
     agent any
-tools name: 'jenkins-maven', type: 'maven'
-
+tools {
+    maven 'jenkins-maven'
+}
     stages {
         stage('Build') {
             steps {
                 echo 'Building the project...'
-            //sh 'mvn package'
-            sh 'mvn --version'
+            sh 'mvn package'
             }
         }
 
         stage('Test') {
 steps {
                 echo 'Running tests...'
-                //sh 'mvn test'
+                sh 'mvn test'
             }
         }
 
