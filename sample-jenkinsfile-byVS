@@ -7,7 +7,7 @@ tools {
         stage('Build') {
             steps {
                 echo 'Building the project...'
-            sh 'mvn package'
+            sh 'mvn --version'
             }
         }
 
