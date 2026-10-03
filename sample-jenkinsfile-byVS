@@ -9,7 +9,9 @@ tools {
                 echo 'Building the project...'
             //sh 'mvn package'
             //java -jar jenkins-cli.jar build sample-jenkinsfile-byVS
-sh 'mvn -B -DskipTests clean package'
+//sh 'mvn -B -DskipTests clean package'
+
+sh 'mvn --version'
             }
         }
 
