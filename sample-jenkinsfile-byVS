@@ -1,8 +1,5 @@
 pipeline {
     agent any
-parameters {
-  booleanParam description: 'this check-box is mandatory ', name: 'inmale'
-}
 
     stages {
         stage('Build') {
@@ -15,12 +12,15 @@ cat'''
         }
 
         stage('Test') {
+            steps {
                 input {
   message 'should we continue ?'
+  id '1'
   ok 'job has been proceeded '
 }
-  steps {
+
                 echo 'Running tests...'
+                input 'continue'
             }
         }
 
@@ -30,21 +30,18 @@ cat'''
             }
         }
     }
-    post {
-  always {
-    // One or more steps need to be included within each condition's block.
-  }
-  unstable {
-    // One or more steps need to be included within each condition's block.
-  }
-  notBuilt {
-    // One or more steps need to be included within each condition's block.
-  }
-  aborted {
-    // One or more steps need to be included within each condition's block.
-  }
-}
-
+    post 
+{
+        always {
+            echo 'This will always run after the stages.'
+        }
+        success {
+            echo 'This will run only if the pipeline succeeds.'
+        }
+        failure {
+            echo 'This will run only if the pipeline fails.'
+        }
+    }
 }
 
 
