@@ -30,18 +30,21 @@ cat'''
             }
         }
     }
-    post 
-{
-        always {
-            echo 'This will always run after the stages.'
-        }
-        success {
-            echo 'This will run only if the pipeline succeeds.'
-        }
-        failure {
-            echo 'This will run only if the pipeline fails.'
-        }
-    }
+    post {
+  always {
+    // One or more steps need to be included within each condition's block.
+  }
+  unstable {
+    // One or more steps need to be included within each condition's block.
+  }
+  notBuilt {
+    // One or more steps need to be included within each condition's block.
+  }
+  aborted {
+    // One or more steps need to be included within each condition's block.
+  }
+}
+
 }
 
 
