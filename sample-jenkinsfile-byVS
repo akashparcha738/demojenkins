@@ -5,25 +5,26 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                sh '''pwd
-ls
-cat'''
+                //mvn 'build'
             }
         }
 
         stage('Test') {
-                input {
-  message 'should we continue ?'
-  ok 'job has been proceeded '
-}
- steps {
+steps {
                 echo 'Running tests...'
+                //mvn 'test'
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy to staging') {
             steps {
-                echo 'Deploying the project...'
+                echo 'Deploying the project on staging environment...'
+            input 'continue'
+            }
+        }
+    stage('Deploy to production') {
+            steps {
+                echo 'Deploying the project on production environment...'
             }
         }
     }
