@@ -7,14 +7,14 @@ tools {
         stage('Build') {
             steps {
                 echo 'Building the project...'
-            sh 'mvn --version'
+            sh 'mvn package'
             }
         }
 
         stage('Test') {
 steps {
                 echo 'Running tests...'
-                //mvn 'test'
+                sh 'mvn test'
             }
         }
 
