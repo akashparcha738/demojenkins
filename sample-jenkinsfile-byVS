@@ -20,7 +20,6 @@ cat'''
 }
 
                 echo 'Running tests...'
-                input 'continue'
             }
         }
 
