@@ -12,13 +12,12 @@ cat'''
         }
 
         stage('Test') {
-            steps {
                 input {
   message 'should we continue ?'
   id '1'
   ok 'job has been proceeded '
 }
-
+  steps {
                 echo 'Running tests...'
             }
         }
