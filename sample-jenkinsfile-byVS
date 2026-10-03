@@ -1,6 +1,6 @@
 pipeline {
     agent any
-tool name: 'jenkins-maven', type: 'maven'
+tools name: 'jenkins-maven', type: 'maven'
 
     stages {
         stage('Build') {
