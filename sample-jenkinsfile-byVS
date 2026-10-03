@@ -1,5 +1,8 @@
 pipeline {
     agent any
+parameters {
+  booleanParam description: 'this check-box is mandatory ', name: 'inmale'
+}
 
     stages {
         stage('Build') {
@@ -14,7 +17,6 @@ cat'''
         stage('Test') {
                 input {
   message 'should we continue ?'
-  id '1'
   ok 'job has been proceeded '
 }
   steps {
